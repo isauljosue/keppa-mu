@@ -1,0 +1,30 @@
+import React, { useRef } from "react";
+import { extend, useThree, useFrame } from "react-three-fiber";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+extend({ OrbitControls });
+
+const CameraControls = () => {
+  const {
+    camera,
+    gl: { domElement },
+  } = useThree();
+
+  const controls = useRef();
+
+
+  useFrame(() => controls.current.update());
+
+  return (
+    <orbitControls
+      ref={controls}
+      args={[camera, domElement]}
+      autoRotate={false}
+      enableZoom={false}
+      enablePan={false}
+      enableRotate={false}
+    />
+  );
+};
+
+export default CameraControls;
